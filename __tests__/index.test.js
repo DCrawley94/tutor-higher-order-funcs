@@ -131,7 +131,7 @@ describe('Higher Order Functions', () => {
         expect(add2NumsMultiplyBy3rd(2, 3, 7)).toBe(hof.mul(hof.add(2, 3), 7));
       });
     });
-    describe('limit', () => {
+    describe.only('limit', () => {
       it('returns a function on first invocation', () => {
         const addUseOnceOnly = hof.limit(hof.add, 1);
         expect(typeof addUseOnceOnly).toBe('function');
@@ -146,7 +146,7 @@ describe('Higher Order Functions', () => {
         expect(addUseLiberally(4, 38)).toBe(42);
         expect(addUseLiberally).toHaveBeenCalledTimes(6);
       });
-      it('returns undefined when invoked more times than given limit', () => {
+      it.only('returns undefined when invoked more times than given limit', () => {
         const addUseScarcely = jest.fn(hof.limit(hof.add, 3));
         expect(addUseScarcely(3, 1)).toBe(4);
         expect(addUseScarcely).toHaveBeenCalledTimes(1);

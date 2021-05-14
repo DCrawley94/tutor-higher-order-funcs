@@ -1,30 +1,90 @@
 const hof = {};
 
-hof.identity = function() {};
+hof.identity = function(value) {
+     return value
+};
 
-hof.identityf = function() {};
+hof.identityf = function(value) {
+    return function() {
+        return value
+    }
+};
 
-hof.add = function() {};
+hof.add = function(num1, num2) {
+  return num1 + num2
+};
 
-hof.sub = function() {};
+hof.sub = function(num1, num2) {
+    return num1 - num2
+};
 
-hof.mul = function() {};
+hof.mul = function(num1, num2) {
+    return num1 * num2
+};
 
-hof.inc = function() {};
+hof.inc = function(value) {
+  return value + 1
+};
 
-hof.addf = function() {};
+hof.addf = function(num1) {
+    function addNumber(num2) {
+        return num1 + num2
+    }
+    return addNumber
+};
 
-hof.curry = function() {};
+hof.curry = function(biFunc, value) {
+    function functionDoesSomething(valueTwo) {
+        return biFunc(value, valueTwo)
+    }
+    return functionDoesSomething
+};
 
-hof.liftf = function() {};
+hof.liftf = function(func) {
+    function doesSomething(value) {
+        function doesSomethingElse(valueTwo) {
+            return func(value, valueTwo)
+        }
+        return doesSomethingElse
+    }
+    return doesSomething
+};
 
-hof.twice = function() {};
+hof.twice = function(func) {
+    function doesSomething(value) {
+        return func(value, value)
+    }
+    return doesSomething
+};
 
-hof.composeu = function() {};
+hof.composeu = function(func1, func2) {
+    function doesSomething(value) {
+        const funcOneOutput = func1(value)
+        const funcTwoOutput = func2(funcOneOutput)
+        return funcTwoOutput
+    }
+    return doesSomething
+};
 
-hof.composeb = function() {};
+hof.composeb = function(func1, func2) {
+    function doesSomething(val1, val2, val3) {
+        return func2(func1(val1, val2), val3)
+    }
+    return doesSomething
+};
 
-hof.limit = function() {};
+hof.limit = function(func, limit) {
+    let counter = 0
+    function doesSomething(val1, val2) {
+        counter++
+        if (counter > limit) {
+            return undefined
+        }
+        return func(val1, val2)
+    }
+    return doesSomething
+};
+
 
 hof.from = function() {};
 
