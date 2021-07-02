@@ -85,8 +85,8 @@ hof.limit = function (func, limit) {
 	return doesSomething;
 };
 
-hof.from = function (startNum) {
-	let counter = startNum;
+hof.from = function (startVal) {
+	let counter = startVal;
 	function generator() {
 		counter++;
 		return counter - 1;
@@ -94,7 +94,18 @@ hof.from = function (startNum) {
 	return generator;
 };
 
-hof.to = function () {};
+hof.to = function (generator, endValue) {
+	let count = generator();
+	function generatorPart2() {
+		count = generator();
+		if (count > endValue) {
+			return;
+		}
+
+		return (count -= 1);
+	}
+	return generatorPart2;
+};
 
 hof.fromTo = function () {};
 
