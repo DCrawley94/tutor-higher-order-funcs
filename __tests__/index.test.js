@@ -327,7 +327,7 @@ describe('Higher Order Functions', () => {
 				expect(gen()).toBe(undefined);
 			});
 		});
-		describe.only('fibonaccif', () => {
+		describe('fibonaccif', () => {
 			it('returns a function', () => {
 				const fib = hof.fibonaccif(0, 1);
 				expect(typeof fib).toBe('function');
@@ -357,7 +357,7 @@ describe('Higher Order Functions', () => {
 		});
 	});
 
-	describe('gensym Functions', () => {
+	describe.only('gensym Functions', () => {
 		describe('gensymf', () => {
 			it('returns a function on first invocation', () => {
 				expect(typeof hof.gensymf('A')).toBe('function');

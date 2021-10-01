@@ -155,9 +155,23 @@ hof.fibonaccif = function (firstNum, secondNum) {
 	};
 };
 
-hof.gensymf = function () {};
+hof.gensymf = function (symbol) {
+	let count = 0;
+	return () => {
+		return `${symbol}${count++}`;
+	};
+};
 
-hof.gensymff = function () {};
+hof.gensymff = function (unaryFunc, seed) {
+	return (symbol) => {
+		let count = seed;
+		return () => {
+			const result = unaryFunc(count);
+			count++;
+			return `${symbol}${result}`;
+		};
+	};
+};
 
 hof.counter = function () {};
 
