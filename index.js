@@ -95,27 +95,56 @@ hof.from = function (startVal) {
 };
 
 hof.to = function (generator, endValue) {
-	let count = generator();
+	let count = 0;
 	function generatorPart2() {
 		count = generator();
 		if (count > endValue) {
 			return;
 		}
-
 		return (count -= 1);
 	}
 	return generatorPart2;
 };
 
-hof.fromTo = function () {};
+hof.fromTo = function (base, limit) {
+	let count = base;
+	function generator() {
+		count++;
+		if (count > limit) return;
+		else return count - 1;
+	}
+	return generator;
+};
 
-hof.element = function () {};
+hof.element = function (array, generator) {
+	let count = 0;
+	return () => {
+		return generator ? array[generator()] : array[count++];
+	};
+};
 
-hof.collect = function () {};
+hof.collect = function (generator, array) {
+	return () => {
+		const elementToCollect = generator();
+		if (elementToCollect !== undefined) array.push(elementToCollect);
+		return elementToCollect;
+	};
+};
 
-hof.filter = function () {};
+hof.filter = function (generator, predicate) {
+	return () => {
+		const value = generator();
+		if (predicate(value)) return value;
+	};
+};
 
-hof.concat = function () {};
+hof.concat = function (generator1, generator2) {
+	return () => {
+		let value = generator1();
+		if (value === undefined && generator2) value = generator2();
+		return value;
+	};
+};
 
 hof.fibonaccif = function () {};
 

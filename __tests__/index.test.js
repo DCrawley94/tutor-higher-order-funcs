@@ -179,7 +179,7 @@ describe('Higher Order Functions', () => {
 				expect(index()).toBe(2);
 			});
 		});
-		describe.only('to', () => {
+		describe('to', () => {
 			it('returns a function on first invocation', () => {
 				const index = hof.to(hof.from(0), 5);
 				expect(typeof index).toBe('function');
@@ -299,7 +299,7 @@ describe('Higher Order Functions', () => {
 				expect(fil()).toBe(undefined);
 			});
 		});
-		describe('concat', () => {
+		describe.only('concat', () => {
 			it('returns a function', () => {
 				const con = hof.concat(hof.fromTo(0, 3), hof.fromTo(0, 2));
 				expect(typeof con).toBe('function');
