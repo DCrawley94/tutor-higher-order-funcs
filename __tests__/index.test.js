@@ -299,7 +299,7 @@ describe('Higher Order Functions', () => {
 				expect(fil()).toBe(undefined);
 			});
 		});
-		describe.only('concat', () => {
+		describe('concat', () => {
 			it('returns a function', () => {
 				const con = hof.concat(hof.fromTo(0, 3), hof.fromTo(0, 2));
 				expect(typeof con).toBe('function');
@@ -327,7 +327,7 @@ describe('Higher Order Functions', () => {
 				expect(gen()).toBe(undefined);
 			});
 		});
-		describe('fibonaccif', () => {
+		describe.only('fibonaccif', () => {
 			it('returns a function', () => {
 				const fib = hof.fibonaccif(0, 1);
 				expect(typeof fib).toBe('function');

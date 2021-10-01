@@ -146,7 +146,14 @@ hof.concat = function (generator1, generator2) {
 	};
 };
 
-hof.fibonaccif = function () {};
+hof.fibonaccif = function (firstNum, secondNum) {
+	let nextNums = [0, firstNum, secondNum];
+	return () => {
+		nextNums.shift();
+		nextNums.push(nextNums[0] + nextNums[1]);
+		return nextNums[0];
+	};
+};
 
 hof.gensymf = function () {};
 
